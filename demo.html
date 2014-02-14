@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>xuMsg-Demo</title>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="jquery.xuMsg.js"></script>
+<script>
+	$(function(){
+	$("#xuMsg").click(function(){
+		$(this).xuMsg({w:500,mask:true,okBtn:true,noBtn:true,text:true,value:"元芳你怎么看！",okText:"你好"});
+	})
+	$("#demo1").click(function(){
+		wid=$("#demo1-wid").val();
+		$(this).xuMsg({w:wid});
+	})
+	$("#demo2").click(function(){
+		op=$("#demo2-input").val();
+		$(this).xuMsg({opacity:op});
+	})
+	$("#demo22").click(function(){
+		$(this).xuMsg({mask:false});
+	})
+	$("#demo3").click(function(){
+		text="这是没有头部的弹出层需要单独定义关闭按钮比如<button class='xuMsgClose'>关闭</button>"
+		$(this).xuMsg({header:false,value:text});
+	})
+	$("#demo4").click(function(){
+		text=$("#demo4-input").val();
+		$(this).xuMsg({title:text});
+	})
+	$("#demo5").click(function(){
+		text=$("#demo5-input").val();
+		$(this).xuMsg({value:text});
+	})
+	$("#demo6").click(function(){
+		$(this).xuMsg({okBtn:true});
+	})
+	var okFunction=function(){
+		alert("这是确定按钮的回调函数！");
+	}
+	$("#demo66").click(function(){
+		$(this).xuMsg({okBtn:okFunction});
+	})
+	$("#demo666").click(function(){
+		text=$("#demo666-input").val();
+		$(this).xuMsg({okBtn:true,okText:text});
+	})
+	$("#demo7").click(function(){
+		$(this).xuMsg({okBtn:true,noBtn:true});
+	})
+	var noFunction=function(){
+		alert("这是取消按钮的回调函数！");
+	}
+	$("#demo77").click(function(){
+		$(this).xuMsg({okBtn:true,noBtn:noFunction});
+	})
+	$("#demo777").click(function(){
+		text=$("#demo777-input").val();
+		$(this).xuMsg({okBtn:true,noBtn:true,noText:text});
+	})
+	})
+</script>
+<style>
+*{margin:0;padding:0;font-size:12px;}
+.xuMsg{
+	position:fixed;
+	top:0;
+	z-index:999;
+	border:1px solid #898989;
+	border-radius:4px;
+	background:#FFFFFF;
+}
+.xuMsg .xuMsg-head{
+	border-radius:4px 4px 0 0;
+	padding:10px;
+	border-bottom:1px solid #EAEAEA;
+}
+.xuMsg .xuMsg-head .xuMsgClose{
+	cursor:pointer;
+	float:right;
+	font-size:18px;
+	color:#848584;
+}
+.xuMsg .xuMsg-head .xuMsgClose:hover{
+	color:#343434;
+}
+.xuMsg .xuMsg-head h2{
+	font-size:14px;
+	font-weight:normal;
+}
+.xuMsg .xuMsg-content{
+	padding:10px;
+}
+.xuMsg .xuMsg-foot{
+	padding:10px;
+	border-top:1px solid #CBCBCC;
+	background:#F6F7F8;
+	border-radius:0 0 4px 4px;
+	text-align:right;
+}
+.xuMsg .xuMsg-foot .okBtn{
+	 background:url(xuMsgBg.png) 0 -0px repeat-x;
+	 border:1px solid #0E8CBC;
+	 border-bottom:1px solid #0C7AA5;
+	 color:#FFF;
+	 display:inlink-block;
+	 padding:5px 15px;
+	 border-radius:20px;
+	 cursor:pointer;
+	 text-shadow:0 1px 1px #232323;
+	 margin-left:10px;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+}
+.xuMsg .xuMsg-foot .okBtn:active{
+	 background:url(xuMsgBg.png) 0 -28px repeat-x;
+	 border:1px solid #12AFEC;
+	 border-bottom:1px solid #109ACE;
+}
+.xuMsg .xuMsg-foot .noBtn{
+	 background:url(xuMsgBg.png) 0 -57px repeat-x;
+	 border:1px solid #D4D4D4;
+	 border-bottom:1px solid #B7B7B8;
+	 color:#252525;
+	 display:inlink-block;
+	 padding:5px 15px;
+	 border-radius:20px;
+	 cursor:pointer;
+	 margin-left:10px;
+	 text-shadow:0 1px 1px #FCFCFC;
+	-moz-user-select:none;
+	-webkit-user-select:none;
+}
+.xuMsg .xuMsg-foot .noBtn:active{
+	 background:url(xuMsgBg.png) 0 -85px repeat-x;
+	 border:1px solid #EAEAEA;
+	 border-bottom:1px solid #DBDBDB;
+	 color:#343434;
+}
+.mask{
+	position:fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background:#898989;
+	z-index:998;
+	display:none;
+}
+
+.content{ width:600px; margin:0 auto; font-family:"微软雅黑";}
+.title{ margin:50px 0 20px 0; text-align:center; font-size:16px;}
+.box{ border:1px solid #787878; margin:10px; padding:20px; border-radius:3px;}
+.box h2{ font-size:14px; line-height:30px; margin-bottom:20px;}
+.box p{ line-height:30px;}
+.box input[type="text"]{ border:1px solid #DBDBDB; padding:2px 3px;}
+</style>
+</head>
+
+<body>
+<div class="content">
+	<div class="title">xuMsg0.1 API演示。欢迎联系我提出使用意见(<a href="xuMsg.rar">点击下载</a>)</div>
+	<div class="box">
+    	<h2>1.自定义宽度</h2>
+        <p>输入你要定义的宽度<input name="" type="text" id="demo1-wid"  size="10" value="400"/>px。<input name="" value="显示弹窗" type="button" id="demo1"/></p>
+    </div>
+    <div class="box">
+    	<h2>2.自定义遮罩层</h2>
+        <p>输入你要定义透明度<input name="" type="text" id="demo2-input"  size="10" value="0.6"/>(0~1范围)<input name="" value="显示弹窗" type="button" id="demo2"/><input name="" value="没有遮罩层" type="button" id="demo22"/></p>
+    </div>
+    <div class="box">
+    	<h2>3.弹窗头部</h2>
+        <p><input name="" value="没有头部" type="button" id="demo3"/>　没有头部需要定义关闭按钮</p>
+    </div>
+    <div class="box">
+    	<h2>4.头部文字自定义</h2>
+        <p>输入头部文字<input name="" type="text" id="demo4-input"  size="10" value="这是头部咯"/><input name="" value="显示弹窗" type="button" id="demo4"/></p>
+    </div>
+    <div class="box">
+    	<h2>5.内容文本自定义</h2>
+        <p>输入内容文字<input name="" type="text" id="demo5-input"  size="30" value="元芳你怎么看！"/><input name="" value="显示弹窗" type="button" id="demo5"/></p>
+    </div>
+    <div class="box">
+    	<h2>6.确定按钮</h2>
+        <p><input name="" value="显示弹窗" type="button" id="demo6"/><input name="" value="确定按钮带回调函数" type="button" id="demo66"/>　　按钮自定义文本<input name="" type="text" id="demo666-input"  size="10" value="确定"/><input name="" value="显示弹窗" type="button" id="demo666"/></p>
+    </div>
+    <div class="box">
+    	<h2>6.取消按钮</h2>
+        <p><input name="" value="显示弹窗" type="button" id="demo7"/><input name="" value="取消按钮带回调函数" type="button" id="demo77"/>　　按钮自定义文本<input name="" type="text" id="demo777-input"  size="10" value="取消"/><input name="" value="显示弹窗" type="button" id="demo777"/></p>
+    </div>
+</div>
+</body>
+</html>
